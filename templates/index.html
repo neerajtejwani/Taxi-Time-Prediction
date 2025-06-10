@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NYC Taxi Time Estimator</title>
+</head>
+<body>
+    <h2>Estimate NYC Taxi Trip Time</h2>
+
+    <form method="POST">
+        <label for="pickup">Pickup Location ID:</label>
+        <input type="text" name="pickup" required value="{{ request.form.pickup or '' }}"><br><br>
+
+        <label for="dropoff">Dropoff Location ID:</label>
+        <input type="text" name="dropoff" required value="{{ request.form.dropoff or '' }}"><br><br>
+
+        <button type="submit">Estimate Time</button>
+    </form>
+
+    {% if estimated_time is not none %}
+        <h3>Estimated Time: {{ estimated_time }} minutes</h3>
+    {% elif request.method == 'POST' %}
+        <h3>No matching data found for the provided IDs.</h3>
+    {% endif %}
+</body>
+</html>
+
+
+
+
+
+
+
+
+
